@@ -68,3 +68,38 @@ const restaurant = {
 // Qual è il metodo migliore per clonare l’oggetto chef, e perché? Spread perchè fa una copia superficiale (non abbiamo oggetti annidati in questo caso) ma copia funzioni
 
 // Qual è il metodo migliore per clonare l’oggetto restaurant, e perché? structuredClone perchè copia e riconosce anche oggetti complessi (Date), oltre gli oggetti annidati
+
+
+// Code Question 5
+
+const hamburger = {
+    name: "Cheese Burger",
+    weight: 250,
+    maker: {
+        name: "Anonymous Chef",
+        restaurant: {
+            name: "Hyur's Burgers",
+            address: "Main Street, 123",
+            isOpen: true,
+        },
+        age: 29
+    }
+};
+
+const newRestaurant = { ...hamburger.maker.restaurant };
+newRestaurant.name = "Hyur's II";
+newRestaurant.address = "Second Street, 12";
+const secondBurger = { ...hamburger };
+secondBurger.maker.restaurant = newRestaurant;
+secondBurger.maker.name = "Chef Hyur";
+
+console.log(hamburger.maker.name); // Chef Hyur
+console.log(secondBurger.maker.name); // Chef Hyur
+console.log(hamburger.maker.restaurant.name); // Hyur's Burgers
+console.log(secondBurger.maker.restaurant.name); // Hyur's II
+
+
+
+// Senza lanciare il codice, riesci a prevedere cosa viene stampato in console?
+
+// Quanti oggetti sono stati creati in memoria durante l'esecuzione di questo codice? 5
